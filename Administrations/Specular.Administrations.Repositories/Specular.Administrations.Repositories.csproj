@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Administrations.Repositories</RootNamespace>
+    <AssemblyName>Specular.Administrations.Repositories</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Specular.Common.Repositories\Specular.Common.Repositories.csproj" />
+    <ProjectReference Include="..\Specular.Administrations.Repositories.Contracts\Specular.Administrations.Repositories.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

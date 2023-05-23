@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Api</RootNamespace>
+    <AssemblyName>Specular.Api</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.16" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Administrations\Specular.Administrations.Api\Specular.Administrations.Api.csproj" />
+    <ProjectReference Include="..\Common\Specular.Common.Core\Specular.Common.Core.csproj" />
+    <ProjectReference Include="..\Common\Specular.Common.Mvc\Specular.Common.Mvc.csproj" />
+    <ProjectReference Include="..\DataAccess\Specular.Context\Specular.Context.csproj" />
+  </ItemGroup>
+
+</Project>

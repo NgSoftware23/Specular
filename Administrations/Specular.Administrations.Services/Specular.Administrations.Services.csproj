@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Administrations.Services</RootNamespace>
+    <AssemblyName>Specular.Administrations.Services</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Specular.Common.Core\Specular.Common.Core.csproj" />
+    <ProjectReference Include="..\Specular.Administrations.Repositories.Contracts\Specular.Administrations.Repositories.Contracts.csproj" />
+    <ProjectReference Include="..\Specular.Administrations.Services.Contracts\Specular.Administrations.Services.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+</Project>

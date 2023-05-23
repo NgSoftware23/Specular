@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Common.Repositories</RootNamespace>
+    <AssemblyName>Specular.Common.Repositories</AssemblyName>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.16" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\Specular.Context.Contracts\Specular.Context.Contracts.csproj" />
+    <ProjectReference Include="..\..\DataAccess\Specular.Context.Entities.Contracts\Specular.Context.Entities.Contracts.csproj" />
+    <ProjectReference Include="..\Specular.Common.Repositories.Contracts\Specular.Common.Repositories.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Administrations.Entities.Configurations</RootNamespace>
+    <AssemblyName>Specular.Administrations.Entities.Configurations</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\Specular.Context.EntityFrameworkCore\Specular.Context.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Specular.Administrations.Entities\Specular.Administrations.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

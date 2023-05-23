@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>NgSoftware.Specular.Context.Contracts</RootNamespace>
+    <AssemblyName>Specular.Context.Contracts</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Specular.Common.Core.Contracts\Specular.Common.Core.Contracts.csproj" />
+    <ProjectReference Include="..\Specular.Context.Entities.Contracts\Specular.Context.Entities.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

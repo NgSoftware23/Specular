@@ -8,10 +8,10 @@ public class DeleteOrganizationModel
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 
     /// <summary>
     /// Идентификатор организации
     /// </summary>
-    public Guid OrganizationId { get; set; }
+    public Guid OrganizationId { get; init; }
 }

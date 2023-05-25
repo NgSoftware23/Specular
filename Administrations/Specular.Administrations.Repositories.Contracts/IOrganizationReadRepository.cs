@@ -13,6 +13,11 @@ public interface IOrganizationReadRepository
     Task<Organization?> GetActiveByIdAsync(Guid id, CancellationToken cancellationToken);
 
     /// <summary>
+    /// Получает активную <see cref="Organization"/> по имени
+    /// </summary>
+    Task<Organization?> GetActiveByNameAsync(string name, CancellationToken cancellationToken);
+
+    /// <summary>
     /// Получает список всех организаций пользователя
     /// </summary>
     Task<IReadOnlyCollection<Organization>> GetByUserIdAsync(Guid userId, CancellationToken cancellationToken);

@@ -8,5 +8,5 @@ public class UpdateOrganizationModel : OrganizationModel
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 }

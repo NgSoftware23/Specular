@@ -25,6 +25,12 @@ public class OrganizationReadRepository : IOrganizationReadRepository, IAdminist
             .NotDeletedAt()
             .FirstOrDefaultAsync(cancellationToken);
 
+    Task<Organization?> IOrganizationReadRepository.GetActiveByNameAsync(string name, CancellationToken cancellationToken)
+        => reader.Read<Organization>()
+            .Where(x => x.NameLowerCase == name.ToLower())
+            .NotDeletedAt()
+            .FirstOrDefaultAsync(cancellationToken);
+
     Task<IReadOnlyCollection<Organization>> IOrganizationReadRepository.GetByUserIdAsync(Guid userId, CancellationToken cancellationToken)
         => reader.Read<Organization>()
             .Where(x => x.Users.Any(y => y.UserId == userId &&

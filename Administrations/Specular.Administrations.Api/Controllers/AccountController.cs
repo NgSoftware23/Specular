@@ -21,8 +21,8 @@ namespace NgSoftware.Specular.Administrations.Api.Controllers;
 /// Работа с учётными записями
 /// </summary>
 [ApiController]
-[ApiExplorerSettings(GroupName = $"{AccountConstants.DocPrefix}v1")]
-[Route(AccountConstants.DefaultControllerRoute)]
+[ApiExplorerSettings(GroupName = $"{AdministrationConstants.DocPrefix}v1")]
+[Route(AdministrationConstants.DefaultControllerRoute)]
 public class AccountController : ControllerBase
 {
     private readonly IUserManager userManager;

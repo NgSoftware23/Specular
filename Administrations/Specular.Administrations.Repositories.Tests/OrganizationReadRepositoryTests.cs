@@ -174,4 +174,59 @@ public class OrganizationReadRepositoryTests : SpecularContextInMemory
         // Assert
         result.Should().BeTrue();
     }
+
+    /// <summary>
+    /// Возвращает null если не находит организацию по имени
+    /// </summary>
+    [Fact]
+    public async Task GetActiveByNameShouldReturnNull()
+    {
+        //Arrange
+        var targetName = $"targetName{Guid.NewGuid():N}";
+
+        // Act
+        var result = await organizationReadRepository.GetActiveByNameAsync(targetName, CancellationToken.None);
+
+        // Assert
+        result.Should().BeNull();
+    }
+
+    /// <summary>
+    /// Возвращает null если не находит организацию по имени т.к. удалена
+    /// </summary>
+    [Fact]
+    public async Task GetActiveByNameShouldReturnDeleted()
+    {
+        //Arrange
+        var targetOrganization = TestDataGenerator.GetOrganization();
+        targetOrganization.DeletedAt = DateTimeOffset.UtcNow;
+        await Context.AddAsync(targetOrganization);
+        await Context.SaveChangesAsync();
+
+        // Act
+        var result = await organizationReadRepository.GetActiveByNameAsync(targetOrganization.Name, CancellationToken.None);
+
+        // Assert
+        result.Should().BeNull();
+    }
+
+    /// <summary>
+    /// Возвращает организацию по имени
+    /// </summary>
+    [Fact]
+    public async Task GetActiveByNameShouldReturnValue()
+    {
+        //Arrange
+        var targetOrganization = TestDataGenerator.GetOrganization();
+        await Context.AddAsync(targetOrganization);
+        await Context.SaveChangesAsync();
+
+        // Act
+        var result = await organizationReadRepository.GetActiveByNameAsync(targetOrganization.Name, CancellationToken.None);
+
+        // Assert
+        result.Should()
+            .NotBeNull()
+            .And.BeEquivalentTo(targetOrganization);
+    }
 }

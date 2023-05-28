@@ -22,6 +22,7 @@ public class AdministrationValidateService : ValidateService,
         Register<CreateUserModelValidator>(userReadRepository);
         Register<LoginModelValidator>();
         Register<CreateOrganizationModelValidator>(organizationReadRepository);
+        Register<UpdateOrganizationModelValidator>(organizationReadRepository);
     }
 
     /// <inheritdoc cref="ValidateService.ErrorsHandle"/>

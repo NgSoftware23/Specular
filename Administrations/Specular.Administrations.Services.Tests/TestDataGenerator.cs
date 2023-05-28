@@ -52,16 +52,18 @@ static internal class TestDataGenerator
             CreatedAt = DateTimeOffset.UtcNow,
         };
 
-    static internal Entities.Organization Organization()
+    static internal Entities.Organization Organization(Action<Entities.Organization>? settings = null)
     {
         var name = $"Name{Guid.NewGuid():N}";
-        return new Entities.Organization()
+        var result = new Entities.Organization()
         {
             Id = Guid.NewGuid(),
             Name = name,
             NameLowerCase = name.ToLower(),
             Description = $"Description{Guid.NewGuid():N}",
         };
+        settings?.Invoke(result);
+        return result;
     }
 
     static internal UserOrganization UserOrganization(Action<UserOrganization>? settings)

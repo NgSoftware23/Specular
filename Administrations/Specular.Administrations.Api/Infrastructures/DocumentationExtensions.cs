@@ -34,8 +34,8 @@ public static class DocumentationExtensions
         {
             ApiVersionDescriptionProvider = provider,
             TargetAssembly = Assembly.GetAssembly(typeof(AccountController)),
-            DocName = AccountConstants.DocName,
-            DocPrefix = AccountConstants.DocPrefix,
+            DocName = AdministrationConstants.DocName,
+            DocPrefix = AdministrationConstants.DocPrefix,
             Description = "API по работе с учётными записями",
         };
 }

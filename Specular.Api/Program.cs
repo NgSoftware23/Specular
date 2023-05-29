@@ -127,3 +127,9 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
+
+
+/// <summary>
+/// Маркерный класс для тестирования зависимостей
+/// </summary>
+public partial class Program { }

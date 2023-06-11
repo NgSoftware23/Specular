@@ -23,7 +23,7 @@ namespace NgSoftware.Specular.Api.Client
     public partial interface ISpecularApiClient { }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SpecularApiClient : ISpecularApiClient
+    public abstract partial class SpecularApiClient : ISpecularApiClient
     {
         private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
@@ -155,14 +155,11 @@ namespace NgSoftware.Specular.Api.Client
             return result == null ? "" : result;
         }
 
-        private Task PrepareRequestAsync(HttpClient client, HttpRequestMessage request, string url, CancellationToken cancellationToken)
-            => Task.CompletedTask;
+        protected abstract Task PrepareRequestAsync(HttpClient client, HttpRequestMessage request, string url, CancellationToken cancellationToken);
 
-        private Task PrepareRequestAsync(HttpClient client, HttpRequestMessage request, StringBuilder urlBuilder, CancellationToken cancellationToken)
-            => Task.CompletedTask;
+        protected abstract Task PrepareRequestAsync(HttpClient client, HttpRequestMessage request, StringBuilder urlBuilder, CancellationToken cancellationToken);
 
-        private Task ProcessResponseAsync(HttpClient client, HttpResponseMessage response, CancellationToken cancellationToken)
-            => Task.CompletedTask;
+        protected abstract Task ProcessResponseAsync(HttpClient client, HttpResponseMessage response, CancellationToken cancellationToken);
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]

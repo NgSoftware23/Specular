@@ -8,7 +8,6 @@ namespace NgSoftware.Specular.Api.Infrastructures;
 /// </summary>
 public class ApiIdentityProvider : IIdentityProvider
 {
-    //private readonly IHttpContextAccessor httpContextAccessor;
     private readonly IEnumerable<Claim> claims;
 
     /// <summary>

@@ -10,11 +10,13 @@
   </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Specular.Api.Client\Specular.Api.Client.csproj" />
       <ProjectReference Include="..\Specular.Api\Specular.Api.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.16" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.16" />
     </ItemGroup>
 
 </Project>

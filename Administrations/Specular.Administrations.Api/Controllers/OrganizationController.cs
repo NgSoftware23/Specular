@@ -7,6 +7,7 @@ using NgSoftware.Specular.Administrations.Services.Contracts.Interfaces;
 using NgSoftware.Specular.Administrations.Services.Contracts.Models.Organizations;
 using NgSoftware.Specular.Common.Core.Contracts;
 using NgSoftware.Specular.Common.Mvc.Attributes;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NgSoftware.Specular.Administrations.Api.Controllers;
 
@@ -43,6 +44,7 @@ public class OrganizationController : ControllerBase
     /// </summary>
     [HttpGet]
     [ApiOk(typeof(IEnumerable<OrganizationApiModel>))]
+    [SwaggerOperation(OperationId = "OrganizationGet")]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
         var result = await organizationManager.GetByUserIdAsync(identityProvider.Id, cancellationToken);
@@ -55,6 +57,7 @@ public class OrganizationController : ControllerBase
     [HttpPost]
     [ApiOk(typeof(OrganizationApiModel))]
     [ApiConflict]
+    [SwaggerOperation(OperationId = "OrganizationCreate")]
     public async Task<IActionResult> Create(CreateOrganizationApiModel request, CancellationToken cancellationToken)
     {
         var model = mapper.Map<CreateOrganizationModel>(request);
@@ -71,6 +74,7 @@ public class OrganizationController : ControllerBase
     [ApiNotAcceptable]
     [ApiNotFound]
     [ApiConflict]
+    [SwaggerOperation(OperationId = "OrganizationUpdate")]
     public async Task<IActionResult> Update(OrganizationApiModel request, CancellationToken cancellationToken)
     {
         var model = mapper.Map<UpdateOrganizationModel>(request);
@@ -87,6 +91,7 @@ public class OrganizationController : ControllerBase
     [ApiNoContent]
     [ApiNotAcceptable]
     [ApiNotFound]
+    [SwaggerOperation(OperationId = "OrganizationDelete")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
         var model = new DeleteOrganizationModel

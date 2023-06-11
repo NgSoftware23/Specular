@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using NgSoftware.Specular.Administrations.Api.Controllers;
-using Specular.Api.Tests.Helpers;
+using NgSoftware.Specular.Api.Tests.Helpers;
 using Xunit;
-
-namespace Specular.Api.Tests;
+namespace NgSoftware.Specular.Api.Tests;
 
 /// <summary>
 /// Тесты зависимостей контроллеров

@@ -14,6 +14,7 @@ using NgSoftware.Specular.Administrations.Services.Contracts.Models.User;
 using NgSoftware.Specular.Common.Core.Contracts;
 using NgSoftware.Specular.Common.Mvc.Attributes;
 using NgSoftware.Specular.Common.Mvc.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NgSoftware.Specular.Administrations.Api.Controllers;
 
@@ -61,6 +62,7 @@ public class AccountController : ControllerBase
     [ApiNoContent]
     [ApiNotAcceptable]
     [ApiConflict]
+    [SwaggerOperation(OperationId = "AccountCreateUser")]
     public async Task<IActionResult> CreateUser(CreateUserApiModel modelRequest, CancellationToken cancellationToken)
     {
         var model = mapper.Map<CreateUserModel>(modelRequest);
@@ -77,6 +79,7 @@ public class AccountController : ControllerBase
     [ApiOk(typeof(LoginApiResponse))]
     [ApiNotFound]
     [ApiConflict]
+    [SwaggerOperation(OperationId = "AccountLogin")]
     public async Task<IActionResult> Login(LoginApiRequest request, CancellationToken cancellationToken)
     {
         var model = new LoginModel { Login = request.Login, Password = request.Password, };
@@ -109,6 +112,7 @@ public class AccountController : ControllerBase
     [HttpPost("refresh")]
     [ApiOk(typeof(LoginApiResponse))]
     [ApiNotFound]
+    [SwaggerOperation(OperationId = "AccountRefresh")]
     public async Task<IActionResult> Refresh(RefreshTokenApiRequest request, CancellationToken cancellationToken)
     {
         var protector = protectionProvider.CreateProtector(typeof(AccountController).ToString());
@@ -134,6 +138,7 @@ public class AccountController : ControllerBase
     [HttpPut("logoff")]
     [ApiNoContent]
     [ApiUnauthorized]
+    [SwaggerOperation(OperationId = "AccountLogoff")]
     public async Task<IActionResult> Logoff(CancellationToken cancellationToken)
     {
         var userId = identityProvider.Id;

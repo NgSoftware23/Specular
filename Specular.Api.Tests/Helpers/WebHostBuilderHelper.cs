@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace Specular.Api.Tests.Helpers;
+namespace NgSoftware.Specular.Api.Tests.Helpers;
 
 static internal class WebHostBuilderHelper
 {

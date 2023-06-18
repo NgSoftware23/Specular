@@ -25,6 +25,7 @@ var accountAssembly = typeof(AccountController).GetTypeInfo().Assembly;
 builder.Services.AddControllers(config =>
     {
         config.Conventions.Add(new ApiExplorerGroupConvention());
+        config.Filters.Add<ApiExceptionFilter>();
         config.Filters.Add<AdministrationExceptionFilter>();
     })
     .AddNewtonsoftJson()

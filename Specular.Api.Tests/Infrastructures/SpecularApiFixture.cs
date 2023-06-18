@@ -40,6 +40,17 @@ public class SpecularApiFixture : IAsyncLifetime
         }
     }
 
+    internal PersonalOptions TestPersonalOptions
+        => new()
+        {
+            Identifier = Guid.NewGuid(),
+            Email = $"Email{Guid.NewGuid():N}",
+            Login = $"Login{Guid.NewGuid():N}",
+            Name = $"Name{Guid.NewGuid():N}",
+            SecurityStamp = Guid.NewGuid().ToString(),
+            Params = new Dictionary<string, string>(),
+        };
+
     internal ISpecularApiClient CreateApiClient(PersonalOptions options) => CreateSpecularApiClient(options);
 
     Task IAsyncLifetime.InitializeAsync() => SpecularContext.Database.MigrateAsync();

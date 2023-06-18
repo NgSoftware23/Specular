@@ -35,13 +35,13 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                 services.Remove(descriptor);
             }
 
-            services.AddScoped<DbContextOptions<SpecularContext>>(provider =>
+            services.AddSingleton<DbContextOptions<SpecularContext>>(provider =>
             {
                 var configuration = provider.GetRequiredService<ISpecularContextConfiguration>();
                 var dbContextOptions = new DbContextOptions<SpecularContext>(new Dictionary<Type, IDbContextOptionsExtension>());
                 var optionsBuilder = new DbContextOptionsBuilder<SpecularContext>(dbContextOptions)
                     .UseApplicationServiceProvider(provider)
-                    .UseNpgsql(string.Format(configuration.ConnectionString, Guid.NewGuid().ToString("N")));
+                    .UseNpgsql(connectionString: string.Format(configuration.ConnectionString, Guid.NewGuid().ToString("N")));
                 return optionsBuilder.Options;
             });
         });

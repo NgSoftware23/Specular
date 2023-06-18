@@ -17,7 +17,7 @@ public class BearerTokenProvider : IBearerTokenProvider
     {
         var moment = DateTime.Now;
         var builderResult = SecurityTokenBuilder
-            .Create(ConfigureTokenOptions(jwtSettings, moment, int.MaxValue))
+            .Create(ConfigureTokenOptions(jwtSettings, moment, 10800))
             .AddPersonal(x =>
             {
                 x.Login = options.Login;

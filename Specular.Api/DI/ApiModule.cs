@@ -16,7 +16,7 @@ public class ApiModule : Module
         services.RegisterAsImplementedInterfaces<DateTimeProvider>(ServiceLifetime.Singleton);
         services.RegisterAsImplementedInterfaces<ApiIdentityProvider>(ServiceLifetime.Scoped);
         services.RegisterAsImplementedInterfaces<DbWriterContext>(ServiceLifetime.Scoped);
-        services.RegisterAsImplementedInterfaces<SpecularConfiguration>(ServiceLifetime.Scoped);
+        services.RegisterAsImplementedInterfaces<SpecularConfiguration>(ServiceLifetime.Singleton);
         services.AddHttpContextAccessor();
 
         services.RegisterModule<AdministrationModule>();

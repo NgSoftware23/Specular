@@ -16,7 +16,7 @@ public static class ServiceCollectionExtensions
     /// </summary>
     public static void AddSpecularContext(this IServiceCollection serviceCollection)
     {
-        serviceCollection.TryAddScoped<DbContextOptions<SpecularContext>>(provider =>
+        serviceCollection.TryAddSingleton<DbContextOptions<SpecularContext>>(provider =>
         {
             var configuration = provider.GetRequiredService<ISpecularContextConfiguration>();
             var dbContextOptions = new DbContextOptions<SpecularContext>(new Dictionary<Type, IDbContextOptionsExtension>());
@@ -27,7 +27,7 @@ public static class ServiceCollectionExtensions
             return optionsBuilder.Options;
         });
 
-        serviceCollection.TryAddScoped<DbContextOptions>(provider
+        serviceCollection.TryAddSingleton<DbContextOptions>(provider
             => provider.GetRequiredService<DbContextOptions<SpecularContext>>());
 
         serviceCollection.TryAddScoped<SpecularContext>();

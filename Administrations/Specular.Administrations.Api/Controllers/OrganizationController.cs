@@ -44,6 +44,7 @@ public class OrganizationController : ControllerBase
     /// </summary>
     [HttpGet]
     [ApiOk(typeof(IEnumerable<OrganizationApiModel>))]
+    [ApiUnauthorized]
     [SwaggerOperation(OperationId = "OrganizationGet")]
     public async Task<IActionResult> Get(CancellationToken cancellationToken)
     {
@@ -57,6 +58,7 @@ public class OrganizationController : ControllerBase
     [HttpPost]
     [ApiOk(typeof(OrganizationApiModel))]
     [ApiConflict]
+    [ApiUnauthorized]
     [SwaggerOperation(OperationId = "OrganizationCreate")]
     public async Task<IActionResult> Create(CreateOrganizationApiModel request, CancellationToken cancellationToken)
     {
@@ -74,6 +76,7 @@ public class OrganizationController : ControllerBase
     [ApiNotAcceptable]
     [ApiNotFound]
     [ApiConflict]
+    [ApiUnauthorized]
     [SwaggerOperation(OperationId = "OrganizationUpdate")]
     public async Task<IActionResult> Update(OrganizationApiModel request, CancellationToken cancellationToken)
     {
@@ -91,6 +94,7 @@ public class OrganizationController : ControllerBase
     [ApiNoContent]
     [ApiNotAcceptable]
     [ApiNotFound]
+    [ApiUnauthorized]
     [SwaggerOperation(OperationId = "OrganizationDelete")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {

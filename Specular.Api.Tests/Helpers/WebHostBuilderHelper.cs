@@ -13,11 +13,8 @@ static internal class WebHostBuilderHelper
         builder.ConfigureAppConfiguration((_, config) =>
         {
             var projectDir = Directory.GetCurrentDirectory();
-            var configPath = Path.Combine(projectDir, "appsettings.json");
-
-            config
-                .AddJsonFile(configPath)
-                .AddEnvironmentVariables();
+            var configPath = Path.Combine(projectDir, "appsettings.integration.json");
+            config.AddJsonFile(configPath).AddEnvironmentVariables();
         });
     }
 }

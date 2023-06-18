@@ -13,19 +13,19 @@ public class BearerTokenProvider : IBearerTokenProvider
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="BearerTokenProvider"/>
     /// </summary>
-    public BearerTokenProvider(JwtSettingsModel jwtSettings)
+    public BearerTokenProvider(JwtSettingsModel jwtSettings, PersonalOptions options)
     {
         var moment = DateTime.Now;
         var builderResult = SecurityTokenBuilder
             .Create(ConfigureTokenOptions(jwtSettings, moment, int.MaxValue))
             .AddPersonal(x =>
             {
-                x.Login = "testLogin";
-                x.Identifier = Guid.NewGuid();
-                x.Name = "testName";
-                x.Email = "testEmail";
-                x.SecurityStamp = Guid.NewGuid().ToString();
-                x.Params = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
+                x.Login = options.Login;
+                x.Identifier = options.Identifier;
+                x.Name = options.Name;
+                x.Email = options.Email;
+                x.SecurityStamp = options.SecurityStamp;
+                x.Params = options.Params;
             })
             .Build();
         token = builderResult.Token;

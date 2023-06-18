@@ -16,6 +16,7 @@ static internal class DocumentationExtensions
         {
             options.SwaggerEndpointAccount(apiVersionDescriptionProvider);
             options.RoutePrefix = string.Empty;
+            options.EnablePersistAuthorization();
         });
     }
 }

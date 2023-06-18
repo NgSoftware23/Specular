@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NgSoftware.Specular.Api.Tests.Helpers;
@@ -18,7 +17,7 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
     /// <inheritdoc cref="WebApplicationFactory{TEntryPoint}.CreateHost"/>
     protected override IHost CreateHost(IHostBuilder builder)
     {
-        builder.UseEnvironment(Environments.Development);
+        builder.UseEnvironment("integration");
         return base.CreateHost(builder);
     }
 
@@ -36,12 +35,14 @@ public class TestWebApplicationFactory : WebApplicationFactory<Program>
                 services.Remove(descriptor);
             }
 
-            services.AddScoped<DbContextOptions<SpecularContext>>(options =>
+            services.AddScoped<DbContextOptions<SpecularContext>>(provider =>
             {
-                var builder = new DbContextOptionsBuilder<SpecularContext>()
-                    .UseInMemoryDatabase(databaseName: $"SpecularInMemoryDatabase{Guid.NewGuid():N}")
-                    .ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning));
-                return builder.Options;
+                var configuration = provider.GetRequiredService<ISpecularContextConfiguration>();
+                var dbContextOptions = new DbContextOptions<SpecularContext>(new Dictionary<Type, IDbContextOptionsExtension>());
+                var optionsBuilder = new DbContextOptionsBuilder<SpecularContext>(dbContextOptions)
+                    .UseApplicationServiceProvider(provider)
+                    .UseNpgsql(string.Format(configuration.ConnectionString, Guid.NewGuid().ToString("N")));
+                return optionsBuilder.Options;
             });
         });
     }

@@ -15,7 +15,7 @@ namespace NgSoftware.Specular.Api.Tests.Infrastructures;
 public class SpecularApiFixture : IAsyncLifetime
 {
     private readonly TestWebApplicationFactory factory;
-    private readonly Lazy<ISpecularApiClient> specularApiClient;
+    private SpecularContext? specularContext;
 
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="SpecularApiFixture"/>
@@ -23,34 +23,41 @@ public class SpecularApiFixture : IAsyncLifetime
     public SpecularApiFixture()
     {
         factory = new TestWebApplicationFactory();
-        specularApiClient = new Lazy<ISpecularApiClient>(CreateSpecularApiClient);
     }
 
-    internal SpecularContext SpecularContext => factory.Services.GetRequiredService<SpecularContext>();
-
-    internal ISpecularApiClient SpecularApiClient => specularApiClient.Value;
-
-    Task IAsyncLifetime.InitializeAsync()
+    internal SpecularContext SpecularContext
     {
-        var db = factory.Services.GetRequiredService<SpecularContext>();
-        return db.Database.MigrateAsync();
+        get
+        {
+            if (specularContext != null)
+            {
+                return specularContext;
+            }
+
+            var scope = factory.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            specularContext = scope.ServiceProvider.GetRequiredService<SpecularContext>();
+            return specularContext;
+        }
     }
+
+    internal ISpecularApiClient CreateApiClient(PersonalOptions options) => CreateSpecularApiClient(options);
+
+    Task IAsyncLifetime.InitializeAsync() => SpecularContext.Database.MigrateAsync();
 
     async Task IAsyncLifetime.DisposeAsync()
     {
-        var db = factory.Services.GetRequiredService<SpecularContext>();
-        await db.Database.EnsureDeletedAsync();
-        await db.Database.CloseConnectionAsync();
-        await db.DisposeAsync();
+        await SpecularContext.Database.EnsureDeletedAsync();
+        await SpecularContext.Database.CloseConnectionAsync();
+        await SpecularContext.DisposeAsync();
 
         await factory.DisposeAsync();
     }
 
-    private ISpecularApiClient CreateSpecularApiClient()
+    private ISpecularApiClient CreateSpecularApiClient(PersonalOptions options)
     {
         var configuration = factory.Services.GetRequiredService<IConfiguration>();
         var authSetting = configuration.GetSection(JwtSettingsModel.Key).Get<JwtSettingsModel>();
-        var bearerTokenProvider = new BearerTokenProvider(authSetting);
+        var bearerTokenProvider = new BearerTokenProvider(authSetting, options);
         var client = factory.CreateClient();
         return new SpecularApiTestClient(string.Empty, client, bearerTokenProvider);
     }

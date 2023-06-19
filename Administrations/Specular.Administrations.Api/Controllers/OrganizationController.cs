@@ -64,6 +64,7 @@ public class OrganizationController : ControllerBase
     {
         var model = mapper.Map<CreateOrganizationModel>(request);
         await administrationValidateService.ValidateAsync(model, cancellationToken);
+        model.UserId = identityProvider.Id;
         var result = await organizationManager.CreateAsync(model, cancellationToken);
         return Ok(mapper.Map<OrganizationApiModel>(result));
     }

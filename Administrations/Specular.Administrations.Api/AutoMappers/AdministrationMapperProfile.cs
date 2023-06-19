@@ -18,6 +18,7 @@ public class AdministrationMapperProfile : Profile
             .ValidateMemberList(MemberList.Destination);
 
         CreateMap<CreateOrganizationApiModel, CreateOrganizationModel>()
+            .ForMember(x => x.UserId, opt => opt.Ignore())
             .ValidateMemberList(MemberList.Destination);
 
         CreateMap<OrganizationModel, OrganizationApiModel>()

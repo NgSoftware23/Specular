@@ -40,7 +40,7 @@ public class SpecularApiFixture : IAsyncLifetime
         }
     }
 
-    internal PersonalOptions TestPersonalOptions
+    internal PersonalOptions CreateTestPersonalOptions()
         => new()
         {
             Identifier = Guid.NewGuid(),
@@ -51,6 +51,8 @@ public class SpecularApiFixture : IAsyncLifetime
             Params = new Dictionary<string, string>(),
         };
 
+    internal ISpecularApiClient CreateAnonymousApiClient() => new SpecularApiTestClient(string.Empty, factory.CreateClient(), null);
+
     internal ISpecularApiClient CreateApiClient(PersonalOptions options) => CreateSpecularApiClient(options);
 
     Task IAsyncLifetime.InitializeAsync() => SpecularContext.Database.MigrateAsync();
@@ -60,7 +62,6 @@ public class SpecularApiFixture : IAsyncLifetime
         await SpecularContext.Database.EnsureDeletedAsync();
         await SpecularContext.Database.CloseConnectionAsync();
         await SpecularContext.DisposeAsync();
-
         await factory.DisposeAsync();
     }
 

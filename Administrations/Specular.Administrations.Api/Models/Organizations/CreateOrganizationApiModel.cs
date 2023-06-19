@@ -6,11 +6,6 @@
 public class CreateOrganizationApiModel
 {
     /// <summary>
-    /// Идентификатор пользователя, создающего организацию
-    /// </summary>
-    public Guid UserId { get; set; }
-
-    /// <summary>
     /// Имя
     /// </summary>
     public string Name { get; set; } = string.Empty;

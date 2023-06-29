@@ -60,6 +60,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specular.Api.Tests", "Specu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specular.Api.Client", "Specular.Api.Client\Specular.Api.Client.csproj", "{46204613-053B-4F19-A779-E6B50BE11BA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Specular.Portal.Shared", "Specular.Portal.Shared\Specular.Portal.Shared.csproj", "{BE17A949-77B2-425A-BEE4-3241299354F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,10 @@ Global
 		{46204613-053B-4F19-A779-E6B50BE11BA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46204613-053B-4F19-A779-E6B50BE11BA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46204613-053B-4F19-A779-E6B50BE11BA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE17A949-77B2-425A-BEE4-3241299354F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE17A949-77B2-425A-BEE4-3241299354F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE17A949-77B2-425A-BEE4-3241299354F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE17A949-77B2-425A-BEE4-3241299354F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
